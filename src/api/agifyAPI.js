@@ -1,10 +1,10 @@
 const serverProtocol = "https";
-const serverHost = "api.agify?";
-const serverPort = 3001;
-const baseUrl = `${serverProtocol}://${serverHost}:${serverPort}`;
+const serverHost = "api.agify.io?";
+// const serverPort = 3001;
+const baseUrl = `${serverProtocol}://${serverHost}`;
 
-const API = {
-  getTodos: async (name, countryId) => {
+const AGIFY = {
+  getAgifyByName: async (name, countryId) => {
     const requestUrl =
       `${baseUrl}name=${name}` + (countryId ? `&country_id=${countryId}` : "");
     try {
@@ -17,4 +17,4 @@ const API = {
   },
 };
 
-export default API;
+export default AGIFY;
