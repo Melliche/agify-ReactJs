@@ -2,6 +2,7 @@ import { createContext, useState } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from '../App';
 import Login from '../routes/Login';
+import About from '../routes/About';
 
 export const AppContext = createContext(null)
 
@@ -15,9 +16,13 @@ export function AppProvider() {
     },
     {
       path: '/',
-      element: !user.loggedIn ? (<App />) : (<Login />)
+      element: user.loggedIn ? (<App />) : (<Login />)
       
     },
+    {
+      path: '/about',
+      element: <About />
+    }
   ])
 
   return (

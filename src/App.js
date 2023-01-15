@@ -1,21 +1,20 @@
 import './App.css';
+import AGIFY from "./api/meteoAPI";
 
 export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <p>Nammeee</p>
+      <button
+        onClick={() => {
+          AGIFY.getCityInfoByName("renne").then((data) => {
+            console.log(data);
+          });
+        }}
+      >
+        {/* {" "} */}
+        Get info
+      </button>
+    </>
   );
 }
