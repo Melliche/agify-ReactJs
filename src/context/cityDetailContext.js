@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 export const CityDetailContext = createContext(null);
 
-export function TodosProvider({ children }) {
+export function CityDetailProvider({ children }) {
   const { insee } = useParams();
 
   return (

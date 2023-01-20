@@ -3,6 +3,7 @@ import METEO from "./api/meteoAPI";
 import {  useState } from "react";
 // import { AppContext } from "./context/appContext";
 import { useNavigate } from "react-router-dom";
+
 export default function App() {
   // const appContext = useContext(AppContext);
   const navigate = useNavigate();
