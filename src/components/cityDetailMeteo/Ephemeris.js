@@ -7,11 +7,11 @@ export default class Ephemeris extends Component {
     super(props);
     console.log(props.insee)
 
-    const Ephemeris = METEO.getCityEphemerisByInsee(props.insee).then((data) => {
-      console.log(data);
-      return data;
-    });
-    console.log(Ephemeris)
+    // const Ephemeris = METEO.getCityEphemerisByInsee(props.insee).then((data) => {
+    //   console.log(data);
+    //   return data;
+    // });
+    // console.log(Ephemeris)
 
 
     this.state = {

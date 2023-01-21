@@ -1,12 +1,21 @@
 import METEO from "../../api/meteoAPI";
 import Chart from "react-apexcharts";
 import { Component, useEffect, useState } from "react";
+import { fcall } from "q";
 
 export default function WeeksForecast({ insee }) {
   // const [twoWeeksForecast, setTwoWeeksForecast] = useState([]);
-  const [test, setTest] = useState(
-    {
-        // name: "test",
+
+  const [test, setTest] = useState({
+    // options: {},
+    // series: [],
+  });
+
+  useEffect(() => {
+    METEO.getForecastForTWoNextWeeksByInsee(insee).then((data) => {
+      console.log(data.forecast);
+      let forecast = data.forecast;
+      setTest({
         options: {
           chart: {
             id: "basic-bar",
@@ -18,11 +27,13 @@ export default function WeeksForecast({ insee }) {
         series: [
           {
             name: "series-1",
-            data: [30, 40, 45, 50, 49, 60, 70, 91],
+            data: [forecast[0].tmin, 40, 40, 40, 40, 60, 70, 91],
           },
         ],
-    }    
-  );
+      });
+    });
+  }, [insee]);
+
   // this.state = {
   //     forecast: METEO.getForecastForTWoNextWeeksByInsee(props.insee).then()
   // };
@@ -37,12 +48,14 @@ export default function WeeksForecast({ insee }) {
   return (
     <div className="app">
       <h2>Éphémérides</h2>
-        {/* <p>{test.name}</p> */}
+      {/* <p>{test.name}</p> */}
       <div className="row">
         <div className="mixed-chart">
           <Chart
-            options={test.options}
-            series={test.series}
+            // options={{}}
+            // series={{}}
+            options={!test.options ? {} : test.options}
+            series={!test.series ? [] : test.series}
             type="bar"
             width="500"
           />
