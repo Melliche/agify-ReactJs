@@ -3,7 +3,7 @@ const serverHost = "api.meteo-concept.com/api/";
 // const serverPort = 3001;
 const baseUrl = `${serverProtocol}://${serverHost}`;
 const token = "5bf54971588e628fe67994d96c4abf4779d13931acf8ee4640d17826057dd87c";
-
+// const token = "18615a48d52be1ced53aa09f5e5a93b0c72c9efd19dc06e423eda42f6efbdc3c";
 
 // https://api.meteo-concept.com/api/forecast/nextHours?token=5bf54971588e628fe67994d96c4abf4779d13931acf8ee4640d17826057dd87c&insee=35238&hourly=true
 

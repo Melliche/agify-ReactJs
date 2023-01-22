@@ -1,4 +1,3 @@
-// import METEO from "../api/meteoAPI";
 import { useParams } from "react-router-dom";
 import Ephemeris from "../components/cityDetailMeteo/Ephemeris";
 import WeeksForecast from "../components/cityDetailMeteo/WeeksForecast";
