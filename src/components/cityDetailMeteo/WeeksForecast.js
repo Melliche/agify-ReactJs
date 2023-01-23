@@ -4,17 +4,13 @@ import { Component, useEffect, useState } from "react";
 import { fcall } from "q";
 
 export default function WeeksForecast({ insee }) {
-  // const [twoWeeksForecast, setTwoWeeksForecast] = useState([]);
-
-  const [test, setTest] = useState({
-    // options: {},
-    // series: [],
-  });
+  let cityForecast = {}
+  const [cityForecastChart, setCityForecastChart] = useState({});
 
   useEffect(() => {
     METEO.getForecastForTWoNextWeeksByInsee(insee).then((data) => {
-      // let time = new Date().toLocaleDateString();
-      // console.log(time);
+      cityForecast = data;
+      console.log(cityForecast.city.name)
       console.log(data.forecast);
 
       let dateList = [];
@@ -26,13 +22,11 @@ export default function WeeksForecast({ insee }) {
           currentDate.setDate(currentDate.getDate() + i)
         );
         dateList.push(`${dateToAdd.getDate()}-${dateToAdd.getMonth() + 1}`);
-
         tmin.push(data.forecast[i].tmin);
         tmax.push(data.forecast[i].tmax);
       }
 
-      // let forecast = data.forecast;
-      setTest({
+      setCityForecastChart({
         options: {
           chart: {
             id: "rangeArea",
@@ -105,7 +99,7 @@ export default function WeeksForecast({ insee }) {
           curve: "straight",
         },
         title: {
-          text: "New York Temperature (all year round)",
+          text: `Température ${data.city.name} (all year round)`,
         },
         markers: {
           hover: {
@@ -128,12 +122,12 @@ export default function WeeksForecast({ insee }) {
 
   return (
     <div className="app">
-      <h2>Éphémérides</h2>
+      <h2>Temperature sur les 14 prochains jours</h2>
       <div className="row">
         <div className="mixed-chart">
           <Chart
-            options={!test.options ? {} : test.options}
-            series={!test.series ? [] : test.series}
+            options={!cityForecastChart.options ? {} : cityForecastChart.options}
+            series={!cityForecastChart.series ? [] : cityForecastChart.series}
             type="rangeArea"
             width="800"
           />
