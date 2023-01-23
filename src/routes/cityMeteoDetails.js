@@ -8,8 +8,10 @@ export default function CityMeteoDetails({ router }) {
 
   return (
     <CityDetailProvider value={{insee}}>
-        <Ephemeris insee={insee} />
+      <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', justifyContent: 'space-evenly'}}>
         <WeeksForecast insee={insee} />
+        <Ephemeris insee={insee} />
+      </div>
     </CityDetailProvider>
   );
 }

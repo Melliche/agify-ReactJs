@@ -4,13 +4,11 @@ import { Component, useEffect, useState } from "react";
 import { fcall } from "q";
 
 export default function WeeksForecast({ insee }) {
-  let cityForecast = {}
   const [cityForecastChart, setCityForecastChart] = useState({});
-
+  const [cityName, setCityName] = useState(null);
   useEffect(() => {
     METEO.getForecastForTWoNextWeeksByInsee(insee).then((data) => {
-      cityForecast = data;
-      console.log(cityForecast.city.name)
+      setCityName(data.city.name);
       console.log(data.forecast);
 
       let dateList = [];
@@ -21,7 +19,7 @@ export default function WeeksForecast({ insee }) {
         let dateToAdd = new Date(
           currentDate.setDate(currentDate.getDate() + i)
         );
-        dateList.push(`${dateToAdd.getDate()}-${dateToAdd.getMonth() + 1}`);
+        dateList.push((dateToAdd.toLocaleString("fr-FR")).substring(0, 5));
         tmin.push(data.forecast[i].tmin);
         tmax.push(data.forecast[i].tmax);
       }
@@ -30,6 +28,7 @@ export default function WeeksForecast({ insee }) {
         options: {
           chart: {
             id: "rangeArea",
+            width: "60%",
           },
         },
         series: [
@@ -38,31 +37,31 @@ export default function WeeksForecast({ insee }) {
             data: [
               {
                 x: dateList[0],
-                y: [tmin[0], tmax[0]]
+                y: [tmin[0], tmax[0]],
               },
               {
                 x: dateList[1],
-                y: [tmin[1], tmax[1]]
+                y: [tmin[1], tmax[1]],
               },
               {
                 x: dateList[2],
-                y: [tmin[2], tmax[2]]
+                y: [tmin[2], tmax[2]],
               },
               {
                 x: dateList[3],
-                y: [tmin[3], tmax[3]]
+                y: [tmin[3], tmax[3]],
               },
               {
                 x: dateList[4],
-                y: [tmin[4], tmax[4]]
+                y: [tmin[4], tmax[4]],
               },
               {
                 x: dateList[5],
-                y: [tmin[5], tmax[5]]
+                y: [tmin[5], tmax[5]],
               },
               {
                 x: dateList[6],
-                y: [tmin[6], tmax[6]]
+                y: [tmin[6], tmax[6]],
               },
               {
                 x: dateList[7],
@@ -76,23 +75,7 @@ export default function WeeksForecast({ insee }) {
                 x: dateList[9],
                 y: [tmin[9], tmax[9]]
               },
-              {
-                x: dateList[10],
-                y: [tmin[10], tmax[10]]
-              },
-              {
-                x: dateList[11],
-                y: [tmin[11], tmax[11]]
-              },
-              {
-                x: dateList[12],
-                y: [tmin[12], tmax[12]]
-              },
-              {
-                x: dateList[13],
-                y: [tmin[13], tmax[13]]
-              },
-            ]
+            ],
           },
         ],
         stroke: {
@@ -122,22 +105,23 @@ export default function WeeksForecast({ insee }) {
 
   return (
     <div className="app">
+      <h1>{!cityName ? "" : cityName}</h1>
       <h2>Temperature sur les 14 prochains jours</h2>
       <div className="row">
         <div className="mixed-chart">
           <Chart
-            options={!cityForecastChart.options ? {} : cityForecastChart.options}
+            options={
+              !cityForecastChart.options ? {} : cityForecastChart.options
+            }
             series={!cityForecastChart.series ? [] : cityForecastChart.series}
             type="rangeArea"
-            width="800"
+            width="400"
           />
         </div>
       </div>
     </div>
   );
 }
-
-
 
 // setTest({
 //   options: {
