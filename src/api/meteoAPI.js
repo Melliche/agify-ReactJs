@@ -5,10 +5,8 @@ const token = "5bf54971588e628fe67994d96c4abf4779d13931acf8ee4640d17826057dd87c"
 
 const METEO = {
   getCityInfoByName: async (cityName) => {
-    console.log(cityName)
     const requestUrl =
       `${baseUrl}location/cities?token=${token}&search=${cityName}`;
-    console.log(requestUrl)
     try {
       const response = await fetch(requestUrl);
       return await response.json();
