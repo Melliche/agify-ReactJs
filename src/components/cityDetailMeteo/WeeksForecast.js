@@ -1,7 +1,6 @@
 import METEO from "../../api/meteoAPI";
 import Chart from "react-apexcharts";
-import { Component, useEffect, useState } from "react";
-import { fcall } from "q";
+import { useEffect, useState } from "react";
 
 export default function WeeksForecast({ insee }) {
   const [cityForecastChart, setCityForecastChart] = useState({});
@@ -9,7 +8,6 @@ export default function WeeksForecast({ insee }) {
   useEffect(() => {
     METEO.getForecastForTWoNextWeeksByInsee(insee).then((data) => {
       setCityName(data.city.name);
-      console.log(data.forecast);
 
       let dateList = [];
       let tmin = [];
@@ -106,7 +104,7 @@ export default function WeeksForecast({ insee }) {
   return (
     <div className="app">
       <h1>{!cityName ? "" : cityName}</h1>
-      <h2>Temperature sur les 14 prochains jours</h2>
+      <h2>Temperature sur les 10 prochains jours</h2>
       <div className="row">
         <div className="mixed-chart">
           <Chart
@@ -115,7 +113,7 @@ export default function WeeksForecast({ insee }) {
             }
             series={!cityForecastChart.series ? [] : cityForecastChart.series}
             type="rangeArea"
-            width="400"
+            height={400}
           />
         </div>
       </div>

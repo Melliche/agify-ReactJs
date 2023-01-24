@@ -1,6 +1,5 @@
 import METEO from "../../api/meteoAPI";
-import Chart from "react-apexcharts";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Ephemeris({ insee }) {
 
@@ -14,7 +13,7 @@ export default function Ephemeris({ insee }) {
         setIsLoaded(true);
       }
     });
-  }, []);
+  }, [insee]);
 
   return (
     <div className="">

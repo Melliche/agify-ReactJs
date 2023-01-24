@@ -1,14 +1,17 @@
-import Ephemeris from "../components/cityDetailMeteo/Ephemeris";
-import WeeksForecast from "../components/cityDetailMeteo/WeeksForecast";
-import  { CityComparisonProvider } from "../context/cityDetailContext";
-export default function CityComparison({ insee }) {
+import { useParams } from "react-router-dom";
+import HoursForecastComparison from "../components/cityComparison/HoursForecastComparison";
+import { CityComparisonProvider } from "../context/cityComparisonContext";
+export default function CityComparison() {
+  const { insee1, insee2 } = useParams();
+  const insees = { insee1: insee1, insee2: insee2 };
 
   return (
-    <CityComparisonProvider value={{insee}}>
-      <div className="component-content">
-        {/* <WeeksForecast insee={insee} />
-        <Ephemeris insee={insee} /> */}
-      </div>
+    <CityComparisonProvider value={insees}>
+      <section className="section">
+        <div className="component-content">
+          <HoursForecastComparison insees={insees} />
+        </div>
+      </section>
     </CityComparisonProvider>
   );
 }

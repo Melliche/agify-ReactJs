@@ -1,9 +1,8 @@
-import { createContext, useState } from 'react';
+import { createContext } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from '../App';
 import CityMeteoDetails from '../routes/cityMeteoDetails';
 import CityComparison from '../routes/cityComparison';
-// import Login from '../routes/Login';
 
 export const AppContext = createContext(null)
 
@@ -20,7 +19,7 @@ export function AppProvider() {
       element: <CityMeteoDetails />
     },
     {
-      path: '/comparison',
+      path: '/comparison/:insee1/:insee2',
       element: <CityComparison />
     }
   ])
