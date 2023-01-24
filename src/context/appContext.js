@@ -2,12 +2,12 @@ import { createContext, useState } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from '../App';
 import CityMeteoDetails from '../routes/cityMeteoDetails';
+import CityComparison from '../routes/cityComparison';
 // import Login from '../routes/Login';
 
 export const AppContext = createContext(null)
 
 export function AppProvider() {
-  // const [insee, setInsee] = useState({insee: null})
 
   const router = createBrowserRouter([
     {
@@ -19,6 +19,10 @@ export function AppProvider() {
       path: '/details/:insee',
       element: <CityMeteoDetails />
     },
+    {
+      path: '/comparison',
+      element: <CityComparison />
+    }
   ])
 
   return (

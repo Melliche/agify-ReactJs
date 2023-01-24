@@ -10,9 +10,9 @@ export default function Ephemeris({ insee }) {
   useEffect(() => {
     METEO.getCityEphemerisByInsee(insee).then((data) => {
       setEphemeris(data.ephemeride);
-      // if (data.ephemeride) {
-      //   setIsLoaded(true);
-      // }
+      if (data.ephemeride) {
+        setIsLoaded(true);
+      }
     });
   }, []);
 
